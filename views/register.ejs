@@ -1,0 +1,51 @@
+<%- include("partials/_head") %> 
+<body>
+	<!-- form to fill -->
+	<section class="d-flex align-items-center w-100 vh-100">
+		<div class="container w-md-50">
+			<div class="header">
+				<h1 class="text-muted text-center">Crypto Tracker</h1>
+			</div>
+			<div class="d-flex justify-content-center align-items-center">
+				<hr class="w-15 m-0">
+				<span class="text-muted font-italic small">~T~</span>
+				<hr class="w-15 m-0">
+			</div>
+			<div class="card p-5">
+				<div class="text-block text-center mb-3">
+					<span class="text-dark">
+						BTC value(USD):
+						<span class="font-weight-bold text-dark" id="currentValue">$0000000</span>
+					</span>
+				</div>
+				<form action="/register" method="post">
+					<div class="form-group">
+						<label for="username">Username</label>
+						<input type="username" class="form-control" id="username" name="name" placeholder="Username">
+					</div>
+					<div class="form-group">
+						<label for="email">Email</label>
+						<input type="email" class="form-control" id="email" name="username" placeholder="example@email.com">
+					</div>
+					<div class="form-group">
+						<label for="password">Password</label>
+						<input type="password" class="form-control" id="password" name="password" placeholder="Enter a password">
+					</div>
+					<div class="row form-group d-flex justify-content-between align-items-center my-2">
+						<div class="col-md-8">
+							<span class="text-dark small">Already have an account? <a href="/login" class="">LogIn</a></span>
+						</div>
+						<div class="col-md-4">
+							<button class="btn btn-primary">Join</button>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</section>
+	
+	<!-- scripts -->
+	<%- include("partials/_scripts") %>
+</body>
+
+</html>

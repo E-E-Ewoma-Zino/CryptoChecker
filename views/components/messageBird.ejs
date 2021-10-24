@@ -1,0 +1,37 @@
+<!-- message birg sends message for me -->
+<section>
+	<div id="messageBird">
+		<% try{ %>
+			<% bird.forEach(cry=> { %>
+				<% if(cry.message){ %>
+					<div class="fadeOut alert alert-<%= cry.alert %>">
+						<%= cry.message %>
+					</div>
+					<% }else{ %>
+						<div class="alert alert-danger">
+							No Message
+						</div>
+						<%} %>
+							<% }); %>
+								<% }catch(err){ %>
+									<div class="alert alert-danger">
+										_Error: <%= err %> 
+									</div>
+									
+									<% } %>
+										<div id="littleMessageBox" class="alert alert-danger">
+											<div id="littleMessage"></div>
+										</div>
+	</div>
+</section>
+
+<script>
+	const out = document.getElementsByClassName("fadeOut");
+	// get each message created and after 7s disable it
+	for (let i = 0; i < out.length; i++) {
+		const fade = out[i];
+		setTimeout(() => {
+			fade.style.display = "none";
+		}, 7000);
+	}
+</script>

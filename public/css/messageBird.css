@@ -1,0 +1,16 @@
+/* Message Bird css */
+
+/* I created a message box to store and display messages */
+#messageBird {
+	position: fixed;
+	bottom: 0px;
+	right: 0px;
+	z-index: 99;
+	max-width: 100%;
+	padding: 5px 2px;
+}
+
+/* for the message i will send from the cart_control.js */
+#littleMessageBox {
+	display: none
+}
