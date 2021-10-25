@@ -1,52 +1,86 @@
-<%- include("partials/_head") %> 
-<body>
-	<!-- form to fill -->
-	<section class="d-flex align-items-center w-100 vh-100">
-		<div class="container w-md-50">
-			<div class="header">
-				<h1 class="text-muted text-center">Crypto Tracker</h1>
-			</div>
-			<div class="d-flex justify-content-center align-items-center">
-				<hr class="w-15 m-0">
-				<span class="text-muted font-italic small">~T~</span>
-				<hr class="w-15 m-0">
-			</div>
-			<div class="card p-5">
-				<div class="text-block text-center mb-3">
-					<span class="text-dark">
-						BTC value(USD):
-						<span class="font-weight-bold text-dark" id="currentValue">$0000000</span>
-					</span>
-				</div>
-				<form action="/track" method="post">
-					<div class="form-group">
-						<label for="track">Enter value to track(USD):</label>
-						<input type="number" class="form-control" id="track" name="track" placeholder="$55000">
-					</div>
-					<div class="form-group">
-						<div class="form-check">
-							<label class="form-check-label">
-								<input type="radio" class="form-check-input" name="point" id="min" value="0" checked>
-								Goes below
-								<i class="input-helper"></i></label>
-						</div>
-						<div class="form-check">
-							<label class="form-check-label">
-								<input type="radio" class="form-check-input" name="point" id="max" value="1">
-								Goes above
-								<i class="input-helper"></i></label>
-						</div>
-					</div>
-					<div class="form-group my-2">
-						<button class="btn btn-primary float-end">Track</button>
-					</div>
-				</form>
-			</div>
-		</div>
-	</section>
-	
-	<!-- scripts -->
-	<%- include("partials/_scripts") %>
-</body>
+<%- include("partials/_head") %>
 
-</html>
+	<body>
+		<!-- form to fill -->
+		<section class="d-flex align-items-center w-100 vh-100">
+			<div class="container w-md-50 w-lg-30">
+				<div class="header">
+					<h1 class="text-muted text-center" style="font-size: 250%;">Crypto Tracker</h1>
+				</div>
+				<div class="d-flex justify-content-center align-items-center">
+					<hr class="w-15 m-0">
+					<span class="text-muted font-italic small">~T~</span>
+					<hr class="w-15 m-0">
+				</div>
+				<div class="card p-2 p-md-5">
+					<div class="row">
+						<div class="col-12 text-center">
+							<img id="cryptoLogo" class="mb-3" src="assets/image/7Kkuud.png" style="width:3rem; height:3rem">
+						</div>
+						<div class="col-12">
+							<div class="text-block text-center mb-2">
+								<span class="text-dark" id="cryptoTxt">BTC value(USD):</span>
+								<span class="font-weight-bold text-dark" id="currentValue">$0000000</span>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-12">
+							<div class="form-group">
+								<!-- <label for="crypto">Crypto Currenct</label> -->
+								<select class="form-control form-control-sm" id="crypto">
+									<option value="BTC">BTC</option>
+									<option value="ETH">ETH</option>
+									<option value="DODG">DODG</option>
+									<option value="WDGLD">WDGLD</option>
+								</select>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-12">
+							<form action="/track" method="post">
+								<div class="form-group">
+									<label for="track">Enter value to track(USD):</label>
+									<input type="number" class="form-control" id="track" name="track"
+										placeholder="$55000">
+								</div>
+								<div class="form-group">
+									<div class="row">
+										<div class="col-6">
+											<div class="form-check">
+												<label class="form-check-label">
+													<input type="radio" class="form-check-input" name="point" id="min"
+														value="0" checked>
+													Goes below
+													<i class="input-helper"></i></label>
+											</div>
+										</div>
+										<div class="col-6">
+											<div class="form-check">
+												<label class="form-check-label">
+													<input type="radio" class="form-check-input" name="point" id="max"
+														value="1">
+													Goes above
+													<i class="input-helper"></i></label>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="form-group d-flex justify-content-center my-2">
+									<button type="button" class="btn btn-primary float-end" onclick="trackValue()">Track</button>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- scripts -->
+		<%- include("partials/_scripts") %>
+		<script src="js/index.js"></script>
+
+	</body>
+
+	</html>

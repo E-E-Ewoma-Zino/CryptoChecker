@@ -16605,6 +16605,11 @@ a.bg-dark:hover, a.bg-dark:focus, button.bg-dark:hover, button.bg-dark:focus {
 }
 
 @media (min-width: 992px) {
+	/* my code */
+	.w-lg-30 {
+		width: 30% !important;
+	}
+	/* 	 */
 	.m-lg-0 {
 		margin: 0 !important;
 	}

@@ -31,7 +31,13 @@ require(__dirname + "/config/passport")(passport);
 // Initialise mongoss
 require("./config/db.js")(mongoose);
 
+// track
+// require("./tracker");
+
 // @desc	routes for home page are here
 app.use("/", require("./router/index"));
+
+// @desc	404
+app.use(require("./controllers/errors/error404"));
 
 server.listen("8080", () => console.log("app running at port 8080\nWaiting..."));
