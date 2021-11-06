@@ -11,28 +11,25 @@
 				<span class="text-muted font-italic small">~T~</span>
 				<hr class="w-15 m-0">
 			</div>
-			<div class="card p-2 p-md-5">
-				<div class="text-block text-center mb-3">
-					<span class="text-dark">
-						BTC value(USD):
-						<span class="font-weight-bold text-dark" id="currentValue">$0000000</span>
-					</span>
+			<div class="card p-3 p-md-5">
+				<div class="text-block text-center my-3">
+					<h4 class="text-muted">Register</h4>
 				</div>
 				<form action="/register" method="post">
 					<div class="form-group">
 						<label for="username">Username</label>
-						<input type="username" class="form-control" id="username" name="name" placeholder="Username">
+						<input type="username" class="form-control" id="username" name="name" placeholder="Username" required>
 					</div>
 					<div class="form-group">
 						<label for="email">Email</label>
-						<input type="email" class="form-control" id="email" name="username" placeholder="example@email.com">
+						<input type="email" class="form-control" id="email" name="username" placeholder="example@email.com" required>
 					</div>
 					<div class="form-group">
 						<label for="password">Password</label>
-						<input type="password" class="form-control" id="password" name="password" placeholder="Enter a password">
+						<input type="password" class="form-control" id="password" name="password" placeholder="Enter a password" required>
 					</div>
 					<div class="row form-group d-flex justify-content-between align-items-center my-2">
-						<div class="col-md-8">
+						<div class="col-md-8 mb-2">
 							<span class="text-dark small">Already have an account? <a href="/login" class="">LogIn</a></span>
 						</div>
 						<div class="col-md-4">

@@ -7,36 +7,45 @@ const oauth2Client = new google.auth.OAuth2(process.env.CLIENT_ID, process.env.C
 oauth2Client.setCredentials({ refresh_token: process.env.REFRESH_TOKEN });
 
 // for sending messages using nodemailer
-module.exports = async ({ from: from, to: to, subject: subject, text: text, html: html }) => {
-	try {
-		// Generate and Get access token
-		const accessToken = await oauth2Client.getAccessToken();
+module.exports = ({ from: from, to: to, subject: subject, text: text, html: html }, callback) => {
+	// Generate and Get access token
+	oauth2Client.getAccessToken((accessToken_err, accessToken, tokenResponse) => {
+		if(accessToken_err){
+			console.error("accessToken_err::", accessToken_err);
+			console.error("accessToken_err::", accessToken);
+			console.error("accessToken_err::", tokenResponse);
+			return callback(accessToken_err, null, null);
+		}
+		else{	
+			console.log("Generated access token:", accessToken);
 	
-		// console.log("Generated access token:", accessToken);
-		console.log(from);
-		
-		const transporter = nodemailer.createTransport({
-			service: "gmail",
-			auth: {
-				type: "OAuth2",
-				user: from.email,
-				clientId: process.env.CLIENT_ID,
-				clientSecret: process.env.CLIENT_SECRET,
-				refresh_token: process.env.REFRESH_TOKEN,
-				accessToken: accessToken.token
-			}
-		});
-
-		const result = await transporter.sendMail({
-			from: `"${from.name}" <${from.email}>`,
-			to: to,
-			subject: subject,
-			text: text,
-			html: html
-		});
-
-		return result;
-	} catch (err) {
-		return console.error("accessToken_err::", err);
-	}
+			const transporter = nodemailer.createTransport({
+				service: "gmail",
+				auth: {
+					type: "OAuth2",
+					user: "eewoma75@gmail.com",
+					clientId: process.env.CLIENT_ID,
+					clientSecret: process.env.CLIENT_SECRET,
+					refresh_token: process.env.REFRESH_TOKEN,
+					accessToken: accessToken
+				}
+			});
+	
+			transporter.sendMail({
+				from: from,
+				to: to,
+				subject: subject,
+				text: text,
+				html: html
+			},(email_err, info)=>{
+				if(email_err){
+					console.error("email_err::", email_err);
+					return callback(null, email_err, null);
+				}
+				else{
+					callback(null, null, info);
+				}
+			});
+		}
+	});
 }

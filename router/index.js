@@ -1,5 +1,6 @@
 const authentication = require("../controllers/auth/authentication");
 const tracker = require("../controllers/home/tracker");
+const myTracks = require("../controllers/home/myTracks");
 const login = require("../controllers/home/login");
 const index = require("../controllers/home/index");
 const express = require("express");
@@ -10,13 +11,21 @@ const router = express.Router();
 // @route	/
 router.get("/", (req, res) => index(req, res));
 
-// @desc	Get route for home
+// @desc	Get route for tracker
 // @route	/tracker
 router.get("/tracker", (req, res) => tracker.get(req, res));
 
-// @desc	Post route for home
+// @desc	Post route for tracker
 // @route	/tracker
 router.post("/tracker", (req, res) => tracker.post(req, res));
+
+// @desc	Get route for myTracks
+// @route	/myTracks
+router.get("/mytracks", (req, res) => myTracks.get(req, res));
+
+// @desc	Delete route for myTracks
+// @route	/myTracks
+router.delete("/mytracks", (req, res) => myTracks.delete(req, res));
 
 // @desc	Get route to register a user
 // @route	/register

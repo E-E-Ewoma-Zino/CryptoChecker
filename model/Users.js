@@ -8,7 +8,10 @@ const userSchema = mongoose.Schema({
 	username: String,
 	password: String,
 	// Things for this user
-	tracks: Array,
+	tracks: [{
+		type: mongoose.Schema.Types.ObjectId,
+		ref: "Tracker"
+	}],
 	// Things needed for the authorization for admin and user.
 	authLevel: {
 		type: Number,

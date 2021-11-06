@@ -17,7 +17,7 @@ cryptoVal.addEventListener("click", e => {
 		replace: ["danger", "success"],
 		message: `<img src="assets/gif/1484.gif" style="width: 2.2rem">`
 	});
-	document.getElementById("cryptoTxt").innerText = cryptoVal.value + " value(USD):";
+	document.getElementById("cryptoTxt").innerText = cryptoVal.value + ":";
 	getCryptoValue(cryptoApis[cryptoVal.value]);
 });
 
@@ -29,25 +29,28 @@ setInterval(() => {
 // use axios to get the value of crypto
 function getCryptoValue(crypto) {
 	// console.log("Checking...");
-
-	axios.get(crypto).then((res) => {
-		if (cryptoVal.value == "WDGLD") {
-			// console.log("res", res);
-			document.getElementById("currentValue").innerHTML = "$" + res.data.market_data.current_price.usd;
-			document.getElementById("cryptoLogo").setAttribute("src", res.data.image.large);
-		} else {
-			value = res.data[0];
-			// console.log("res", value);
-			document.getElementById("currentValue").innerHTML = "$" + value.price;
-			document.getElementById("cryptoLogo").setAttribute("src", value.logo_url);
-		}
-	}).catch((err) => {
-		console.log(":::ERr ", err);
-		messager({
-			replace: ["success", "danger"],
-			message: "Bad Network Connection"
+	try {
+		axios.get(crypto).then((res) => {
+			if (cryptoVal.value == "WDGLD") {
+				// console.log("res", res);
+				document.getElementById("currentValue").innerHTML = "$" + res.data.market_data.current_price.usd;
+				document.getElementById("cryptoLogo").setAttribute("src", res.data.image.large);
+			} else {
+				value = res.data[0];
+				// console.log("res", value);
+				document.getElementById("currentValue").innerHTML = "$" + value.price;
+				document.getElementById("cryptoLogo").setAttribute("src", value.logo_url);
+			}
+		}).catch((err) => {
+			console.log(":::ERr ", err);
+			messager({
+				replace: ["success", "danger"],
+				message: "Bad Network Connection"
+			});
 		});
-	});
+	} catch (err) {
+		window.location.reload();
+	}
 }
 
 // when use wants to track
@@ -55,7 +58,7 @@ function trackValue() {
 	// get tracking values
 	const data = {
 		crypto: document.querySelector("#crypto").value,
-		condution: document.getElementById("min").checked ? 0 : 1,
+		condition: document.getElementById("min").checked ? 0 : 1,
 		value: document.getElementById("track").value,
 		url: cryptoApis[cryptoVal.value]
 	}
@@ -63,11 +66,15 @@ function trackValue() {
 	console.log(data);
 	// post
 	axios.post("/tracker", data).then((res) => {
-		value = res;
+		value = res.data;
 		// console.log("res", value);
-		messager({
+		if(value) messager({
 			replace: ["danger", "success"],
 			message: "Tracking " + cryptoVal.value
+		});
+		else messager({
+			replace: ["success", "danger"],
+			message: "Failed to track currency"
 		});
 	}).catch((err) => {
 		console.log(":::ERr ", err);
