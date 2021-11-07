@@ -15,15 +15,17 @@
 				<div class="row d-flex justify-content-center align-items-center">
 					<% tracks.forEach(track => { %>
 						<div class="col-12 col-md-4 col-lg-3 mb-3">
+							<input type="hidden" class="trackInfo" name="crypro" value="<%= track.crypto %>">
+							<input type="hidden" name="url" value="<%= track.url %>">
 							<div class="card p-3 p-md-5">
 								<div class="row">
 									<div class="col-12 text-center">
-										<img id="cryptoLogo" class="mb-3" src="<%= track.url %>" style="width:3rem; height:3rem">
+										<img class="cryptoLogo mb-3" src="/assets/image/7Kkuud.png" style="width:3rem; height:3rem">
 									</div>
 									<div class="col-12">
 										<div class="text-block text-center mb-2">
-											<span class="text-dark" id="cryptoTxt"><%= track.crypto %>:</span>
-											<span class="font-weight-bold text-dark" id="currentValue">$0000000</span>
+											<span class="cryptoTxt text-dark"><%= track.crypto %>:</span>
+											<span class="currentValue font-weight-bold text-dark">$0000000</span>
 										</div>
 									</div>
 								</div>

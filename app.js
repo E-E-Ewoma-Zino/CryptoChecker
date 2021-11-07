@@ -31,8 +31,11 @@ require(__dirname + "/config/passport")(passport);
 // Initialise mongoss
 require("./config/db.js")(mongoose);
 
-// track
-// require("./tracker");
+// // track
+// setInterval(() => {
+// 	console.log("Tracking");
+// 	// require("./tracker");
+// }, 10000);
 
 // @desc	routes for home page are here
 app.use("/", require("./router/index"));

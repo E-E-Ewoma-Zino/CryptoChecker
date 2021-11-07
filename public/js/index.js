@@ -49,7 +49,11 @@ function getCryptoValue(crypto) {
 			});
 		});
 	} catch (err) {
-		window.location.reload();
+		console.log(":::ERr ", err);
+		setTimeout(() => {
+			alert("Reload this page");
+			window.location.reload();
+		}, 7000);
 	}
 }
 
@@ -84,6 +88,6 @@ function trackValue() {
 		});
 	});
 }
-
+ 
 // as page loads get values
 getCryptoValue(cryptoApis[cryptoVal.value]);
